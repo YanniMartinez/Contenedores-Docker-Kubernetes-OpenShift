@@ -1,0 +1,29 @@
+theia@theiadocker-jonhylml:/home/project$ [ ! -d 'CC201' ] && git clone https://github.com/ibm-developer-skills-network/CC201.git
+Cloning into 'CC201'...
+remote: Enumerating objects: 20, done.
+remote: Counting objects: 100% (20/20), done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 20 (delta 6), reused 19 (delta 6), pack-reused 0
+Unpacking objects: 100% (20/20), done.
+theia@theiadocker-jonhylml:/home/project$ cd CC201/labs/2_IntroKubernetes/
+theia@theiadocker-jonhylml:/home/project/CC201/labs/2_IntroKubernetes$ ls
+app.js      hello-world-apply.yaml   package.json
+Dockerfile  hello-world-create.yaml
+theia@theiadocker-jonhylml:/home/project/CC201/labs/2_IntroKubernetes$ kubectl config get-clusters
+NAME
+labs-prod-kubernetes-sandbox/c8ana0sw0ljj8gkugn50
+theia@theiadocker-jonhylml:/home/project/CC201/labs/2_IntroKubernetes$ kubectl config get-contexts
+CURRENT   NAME               CLUSTER                                             AUTHINFO   NAMESPACE
+*         jonhylml-context   labs-prod-kubernetes-sandbox/c8ana0sw0ljj8gkugn50   jonhylml   sn-labs-jonhylml
+theia@theiadocker-jonhylml:/home/project/CC201/labs/2_IntroKubernetes$ kubectl get pods
+No resources found in sn-labs-jonhylml namespace.
+theia@theiadocker-jonhylml:/home/project/CC201/labs/2_IntroKubernetes$ export MY_NAMESPACE=sn-labs-$USERNAME
+theia@theiadocker-jonhylml:/home/project/CC201/lab_NAMESPACE/hello-world:1 . && docker push us.icr.io/$MY_NAMESPACE/hello-world:1
+Sending build context to Docker daemon  6.656kB
+Step 1/6 : FROM node:9.4.0-alpine
+9.4.0-alpine: Pulling from library/node
+605ce1bd3f31: Pull complete 
+fe58b30348fe: Pull complete 
+46ef8987ccbd: Pull complete 
+Digest: sha256:9cd67a00ed111285460a83847720132204185e9321ec35dacec0d8b9bf674adf
+Stat

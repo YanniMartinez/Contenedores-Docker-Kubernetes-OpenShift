@@ -403,3 +403,4 @@ v1: digest: sha256:5533...... size:1576
 ```
 
 Tras esa salida, si vieramos Docker Hub podriamos ver nuestra imagen.
+

@@ -1,0 +1,185 @@
+theia@theiadocker-jonhylml:/home/project$ docker --version
+Docker version 20.10.7, build 20.10.7-0ubuntu5~18.04.3
+theia@theiadocker-jonhylml:/home/project$ ibmcloud version
+ibmcloud version 2.1.1+19d7e02-2021-09-24T15:16:38+00:00
+theia@theiadocker-jonhylml:/home/project$ cd /home/project
+theia@theiadocker-jonhylml:/home/project$ [ ! -d 'CC201' ] && git clone https://github.com/ibm-developer-skills-network/CC201.git
+Cloning into 'CC201'...
+remote: Enumerating objects: 20, done.
+remote: Counting objects: 100% (20/20), done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 20 (delta 6), reused 19 (delta 6), pack-reused 0
+Unpacking objects: 100% (20/20), done.
+theia@theiadocker-jonhylml:/home/project$ cd CC201/labs/1_ContainersAndDocker/
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ ls
+app.js  Dockerfile  package.json
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+2db29710123e: Pull complete 
+Digest: sha256:13e367d31ae85359f42d637adf6da428f76d75dc9afeb3c21faea0d976f5c651
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+hello-world   latest    feb5d9fea6a5   8 months ago   13.3kB
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                      PORTS     NAMES
+cf520a7b25e2   hello-world   "/hello"   About a minute ago   Exited (0) 58 seconds ago             silly_euler
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker container rm cf520a7b25e2
+cf520a7b25e2
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker build . -t myimage:v1
+Sending build context to Docker daemon  4.096kB
+Step 1/6 : FROM node:9.4.0-alpine
+9.4.0-alpine: Pulling from library/node
+605ce1bd3f31: Pull complete 
+fe58b30348fe: Pull complete 
+46ef8987ccbd: Pull complete 
+Digest: sha256:9cd67a00ed111285460a83847720132204185e9321ec35dacec0d8b9bf674adf
+Status: Downloaded newer image for node:9.4.0-alpine
+ ---> b5f94997f35f
+Step 2/6 : COPY app.js .
+ ---> 28d55fe24ab0
+Step 3/6 : COPY package.json .
+ ---> dfba9ddc4336
+Step 4/6 : RUN npm install &&    apk update &&    apk upgrade
+ ---> Running in 247ff67454fc
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN hello-world-demo@0.0.1 No repository field.
+npm WARN hello-world-demo@0.0.1 No license field.
+
+added 57 packages in 2.37s
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/community/x86_64/APKINDEX.tar.gz
+v3.6.5-44-gda55e27396 [http://dl-cdn.alpinelinux.org/alpine/v3.6/main]
+v3.6.5-34-gf0ba0b43d5 [http://dl-cdn.alpinelinux.org/alpine/v3.6/community]
+OK: 8448 distinct packages available
+Upgrading critical system libraries and apk-tools:
+(1/1) Upgrading apk-tools (2.7.5-r0 -> 2.7.6-r0)
+Executing busybox-1.26.2-r9.trigger
+Continuing the upgrade transaction with new apk-tools:
+(1/7) Upgrading musl (1.1.16-r14 -> 1.1.16-r15)
+(2/7) Upgrading busybox (1.26.2-r9 -> 1.26.2-r11)
+Executing busybox-1.26.2-r11.post-upgrade
+(3/7) Upgrading libressl2.5-libcrypto (2.5.5-r0 -> 2.5.5-r2)
+(4/7) Upgrading libressl2.5-libssl (2.5.5-r0 -> 2.5.5-r2)
+(5/7) Installing libressl2.5-libtls (2.5.5-r2)
+(6/7) Installing ssl_client (1.26.2-r11)
+(7/7) Upgrading musl-utils (1.1.16-r14 -> 1.1.16-r15)
+Executing busybox-1.26.2-r11.trigger
+OK: 5 MiB in 15 packages
+Removing intermediate container 247ff67454fc
+ ---> f5725b44a352
+Step 5/6 : EXPOSE  8080
+ ---> Running in b0b4a8ff4ba6
+Removing intermediate container b0b4a8ff4ba6
+ ---> 96e4b8288ea9
+Step 6/6 : CMD node app.js
+ ---> Running in f2f32e01eaaa
+Removing intermediate container f2f32e01eaaa
+ ---> e6a72039300c
+Successfully built e6a72039300c
+Successfully tagged myimage:v1
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker images
+REPOSITORY    TAG            IMAGE ID       CREATED          SIZE
+myimage       v1             e6a72039300c   54 seconds ago   77MB
+hello-world   latest         feb5d9fea6a5   8 months ago     13.3kB
+node          9.4.0-alpine   b5f94997f35f   4 years ago      68MB
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker run -p 8080:8080 myimage:v1
+Sample app is listening on port 8080.
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ ibmcloud target
+
+                      
+API endpoint:      https://cloud.ibm.com   
+Region:            us-south   
+User:              ServiceId-78506c0d-0905-4b25-b4e7-858414fdaa0d   
+Account:           QuickLabs - IBM Skills Network (f672382e1b43496b83f7a82fd31a59e8)   
+Resource group:    No resource group targeted, use 'ibmcloud target -g RESOURCE_GROUP'   
+CF API endpoint:      
+Org:                  
+Space:                
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ ibmcloud cr namespaces
+Listing namespaces for account 'QuickLabs - IBM Skills Network' in registry 'us.icr.io'...
+
+Namespace   
+sn-labs-jonhylml   
+sn-labsassets   
+
+OK
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ ibmcloud cr region-set us-south
+The region is set to 'us-south', the registry is 'us.icr.io'.
+
+OK
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ ibmcloud cr login
+Logging in to 'us.icr.io'...
+Logged in to 'us.icr.io'.
+
+OK
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ export MY_NAMESPACE=sn-labs-$USERNAME
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker tag myimage:v1 us.icr.io/$MY_NAMESPACE/hello-world:1
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ 
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ docker push us.icr.io/$MY_NAMESPACE/hello-world:1
+The push refers to repository [us.icr.io/sn-labs-jonhylml/hello-world]
+eb7f370db0ad: Pushing  10.02MB
+986c5e0ebf8f: Pushing  2.048kB
+eb7f370db0ad: Pushed 
+0804854a4553: Pushed 
+6bd4a62f5178: Pushing
+986c5e0ebf8f: Pushed 
+6bd4a62f5178: Pushed 
+9dfa40a0da3b: Pushed 1: digest: sha256:48dc53aa51ed49bbde1da62601e44d60ce9d102ec29517ae6b0f700cb045a0fb size: 1576
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ ibmcloud cr images
+Listing images...
+
+Repository                                      Tag      Digest         Namespace          Created          Size     Security status   
+us.icr.io/sn-labs-jonhylml/hello-world          1        48dc53aa51ed   sn-labs-jonhylml   33 minutes ago   28 MB    Scanning...   
+us.icr.io/sn-labsassets/instructions-splitter   latest   2af122cfe4ee   sn-labsassets      1 year ago       21 MB    57 Issues   
+us.icr.io/sn-labsassets/pgadmin-theia           latest   0adf67ad81a3   sn-labsassets      1 year ago       101 MB   51 Issues   
+us.icr.io/sn-labsassets/phpmyadmin              latest   b66c30786353   sn-labsassets      1 year ago       163 MB   55 Issues   
+
+OK
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ ibmcloud cr images
+Listing images...
+
+Repository                                      Tag      Digest         Namespace          Created          Size     Security status   
+us.icr.io/sn-labs-jonhylml/hello-world          1        48dc53aa51ed   sn-labs-jonhylml   34 minutes ago   28 MB    No Issues   
+us.icr.io/sn-labsassets/instructions-splitter   latest   2af122cfe4ee   sn-labsassets      1 year ago       21 MB    57 Issues   
+us.icr.io/sn-labsassets/pgadmin-theia           latest   0adf67ad81a3   sn-labsassets      1 year ago       101 MB   51 Issues   
+us.icr.io/sn-labsassets/phpmyadmin              latest   b66c30786353   sn-labsassets      1 year ago       163 MB   55 Issues   
+
+OK
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ ibmcloud cr images --restrict $MY_NAMESPACE
+Listing images...
+
+Repository                               Tag   Digest         Namespace          Created          Size    Security status   
+us.icr.io/sn-labs-jonhylml/hello-world   1     48dc53aa51ed   sn-labs-jonhylml   35 minutes ago   28 MB   No Issues   
+
+OK
+theia@theiadocker-jonhylml:/home/project/CC201/labs/1_ContainersAndDocker$ 
