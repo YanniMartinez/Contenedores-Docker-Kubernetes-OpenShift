@@ -1,0 +1,6 @@
+theia@theiadocker-jonhylml:
+theia@theiadocker-jonhylml:ml:/home/pr
+theia@theiadocker-jonhytheia@theiadocker-jonhylml:/home/proje$ kubectl proxy
+Starting to serve on 127.0.0.1:8001
+^C
+theia@theiadocker-jonhylml:/home/project$ 

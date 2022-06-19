@@ -1,0 +1,300 @@
+theia@theiadocker-jonhylml:/home/proj
+theia@theiadocker-jonhylml:/home/projes://github.com/ibm-developer-skills-network/CC201.git
+Cloning into 'CC201'...
+remote: Enumerating objects: 20, done.
+remote: Counting objects: 100% (20/20), done.
+remote: Compressing objects:   7% (1/1remote: Compressing objects:  15% (2/1remote: Compressing objects:  23% (3/1remote: Compressing objects:  30% (4/1remote: Compressing objects:  38% (5/1remote: Compressing objects:  46% (6/1remote: Compressing objects:  53% (7/1remote: Compressing objects:  61% (8/1remote: Compressing objects:  69% (9/1remote: Compressing objects:  76% (10/remote: Compressing objects:  84% (11/remote: Compressing objects:  92% (12/remote: Compressing objects: 100% (13/remote: Compressing objects: 100% (13/13), done.
+remote: Total 20 (delta 6), reused 19 (delta 6), pack-reused 0
+Unpacking objects: 100% (20/20), done.
+theia@theiadocker-jonhylml:/home/project$ cd CC201/labs/3_K8sScaleAndUpdate/theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ ls
+app.js
+deployment-configmap-env-var.yaml
+deployment.yaml
+Dockerfile
+package.json
+theia@theiadocker-jonhylml:/home/
+aleAndUpdatetheia@theiadotheia@theiadocker-jonhylml:/CC201/labs/3_K8sScaleA
+abs/3_K8sScaleAndUpdattheia@theiadocker-jonhylml:/project/CC201/la
+theia@theiadocker-jonhylml:nhylml:/homroject/CC201/labs/3
+ct/CC201/labs/3_K8s      caleAndUpdatetheia@      theia@theiadocker-j      onhylml: roject/CC2      project/CC201/labs/      3_K8sScaleAndUpdate      theia@theiadocker-jonhylml:hylml:/home/proje      ct/CC201/labs/3_K8s
+theia@theiadocker-jonhylm l:ker-jonhylml:/home/proj theia@theiadocker-jonhylm l:nhylml:/home/project/CC abs/3_K8sScaleAndUpdateth theia@theiadocker-jonhylml:home/project/CC201/labs/
+labs/3_K8sScaleAndUpdatetheia@theiadocker-jonhylml:e/project/CC201/labs/
+abs/3_K8sScaleAndUpdatettheia@theiadocker-jonhylml:home/project/CC201/la
+theia@theiadocker-jonhylml:ml:/home/project/CC0C201/labs/3_K8sScaleAntheia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ }bash: syntax error near unexpected token `}'
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ 
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ export MY_NAMESPACE=sn-labs-$USERNAME
+theia@theiadocker-jonhylml:/home/
+aleAndUpdatetheia@theiatheia@theiadocker-jonhylml:ct/CC201/labs/3_K8s
+ C201/labs/3_K8sScaleAntheia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ docker build -t us.icr.io/$MY_NAMESPACE/hello-world:1 . && docker push us.icr.io/$MY_NAMESPACE/hello-world:1
+Sending build context to Docker daemon  6.144kB
+Step 1/6 : FROM node:9.4.0-alpine
+9.4.0-alpine: Pulling from library/node
+605ce1bd3f31: Pull complete 
+fe58b30348fe: Pull complete 
+46ef8987ccbd: Pull complete Digest: sha256:9cd67a00ed111285460a83847720132204185e9321ec35dacec0d8b9bf674adf
+Status: Downloaded newer image for node:9.4.0-alpine
+ ---> b5f94997f35f
+Step 2/6 : COPY app.js .
+ ---> 332a2f1c975f
+Step 3/6 : COPY package.json .
+ ---> b2301ec67716
+Step 4/6 : RUN npm install &&    apk update &&    apk upgrade
+ ---> Running in ab1a6cc8df87
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN hello-world-armada@0.0.1 No repository field.
+npm WARN hello-world-armada@0.0.1 No license field.
+
+added 57 packages in 1.971s
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/community/x86_64/APKINDEX.tar.gz
+v3.6.5-44-gda55e27396 [http://dl-cdn.alpinelinux.org/alpine/v3.6/main]
+v3.6.5-34-gf0ba0b43d5 [http://dl-cdn.alpinelinux.org/alpine/v3.6/community]
+OK: 8448 distinct packages available
+Upgrading critical system libraries and apk-tools:
+(1/1) Upgrading apk-tools (2.7.5-r0 -> 2.7.6-r0)
+Executing busybox-1.26.2-r9.trigger
+Continuing the upgrade transaction with new apk-tools:
+(1/7) Upgrading musl (1.1.16-r14 -> 1.1.16-r15)
+(2/7) Upgrading busybox (1.26.2-r9 -> 1.26.2-r11)
+Executing busybox-1.26.2-r11.post-upgrade
+(3/7) Upgrading libressl2.5-libcrypto (2.5.5-r0 -> 2.5.5-r2)
+(4/7) Upgrading libressl2.5-libssl (2.5.5-r0 -> 2.5.5-r2)
+(5/7) Installing libressl2.5-libtls (2.5.5-r2)
+(6/7) Installing ssl_client (1.26.2-r11)
+(7/7) Upgrading musl-utils (1.1.16-r14 -> 1.1.16-r15)
+Executing busybox-1.26.2-r11.trigger
+OK: 5 MiB in 15 packages
+Removing intermediate container ab1a6cc8df87
+ ---> 90f861ba1c53
+Step 5/6 : EXPOSE  8080
+ ---> Running in 3425dab2ec6d
+Removing intermediate container 3425dab2ec6d
+ ---> f095c50833fa
+Step 6/6 : CMD node app.js
+ ---> Running in b1de8a0d64a4
+Removing intermediate container b1de8a0d64a4
+ ---> 0b572575f57c
+Successfully built 0b572575f57c
+Successfully tagged us.icr.io/sn-labs-jonhylml/hello-world:1
+The push refers to repository [us.icr.io/sn-labs-jonhylml/hello-world]
+56b50f6cee82: Pushed 
+560c662e5d46: Pushed 
+a29c56827ead: Pushed 
+0804854a4553: Pushed 
+6bd4a62f5178: Pushed 
+9dfa40a0da3b: Pushed 
+1: digest: sha256:1923f65566325d46eede0f70367606e3fca38fa4f4ef08560d856c41544edf83 size: 1576
+theia@theiadocker-jonhylml:/home/
+aleAndUpdatetheia@theiatheia@theiadocker-jonhylml:ct/CC201/labs/3_K8s
+ C201/labs/3_K8sScaleAntheia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ echo $MY_NAMESPACEK8sScale
+sn-labs-jonhylml
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ 
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl apply -f deployment.yaml
+deployment.apps/hello-world created
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl get pods
+NAME                           READY   STATUS    RESTARTS   AGE
+hello-world-86869f9765-6ktc5   1/1     Running   0          23s
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl expose deployment/hello-world
+service/hello-world exposed
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ 
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ curl -L localhost:8001/api/v1/namespaces/sn-labs-$USERNAME/services/hello-world/proxy
+Hello world from hello-world-86869f9765-6ktc5! Your app is up and running!
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl scale deployment hello-world --replicas=3
+deployment.apps/hello-world scaled
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl get pods
+NAME                           READY   STATUS    RESTARTS   AGE
+hello-world-86869f9765-6ktc5   1/1     Running   0          6m3s
+hello-world-86869f9765-8kns9   1/1     Running   0          8s
+hello-world-86869f9765-hbrw2   1/1     Running   0          9s
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ for i in `seq 10`; do curl -L localhost:8001/api/v1/namespaces/sn-labs-$USERNAME/services/hello-world/proxy; done
+Hello world from hello-world-86869f9765-8kns9! Your app is up and running!
+Hello world from hello-world-86869f9765-6ktc5! Your app is up and running!
+Hello world from hello-world-86869f9765-6ktc5! Your app is up and running!
+Hello world from hello-world-86869f9765-hbrw2! Your app is up and running!
+Hello world from hello-world-86869f9765-6ktc5! Your app is up and running!
+Hello world from hello-world-86869f9765-hbrw2! Your app is up and running!
+Hello world from hello-world-86869f9765-hbrw2! Your app is up and running!
+Hello world from hello-world-86869f9765-hbrw2! Your app is up and running!
+Hello world from hello-world-86869f9765-8kns9! Your app is up and running!
+Hello world from hello-world-86869f9765-6ktc5! Your app is up and running!
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl scale deployment hello-world --replicas=1
+deployment.apps/hello-world scaled
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl get pods
+NAME                           READY   STATUS        RESTARTS   AGE
+hello-world-86869f9765-6ktc5   1/1     Running       0          7m20s
+hello-world-86869f9765-8kns9   1/1     Terminating   0          85s
+hello-world-86869f9765-hbrw2   1/1     Terminating   0          86s
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl get pods
+NAME                           READY   STATUS        RESTARTS   AGE
+hello-world-86869f9765-6ktc5   1/1     Running       0          7m47s
+hello-world-86869f9765-8kns9   0/1     Terminating   0          112s
+hello-world-86869f9765-hbrw2   0/1     Terminating   0          113s
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl get pods
+NAME                           READY   STATUS    RESTARTS   AGE
+hello-world-86869f9765-6ktc5   1/1     Running   0          8m7s
+theia@theiadocker-jonhylml:/home/
+aleAndUpdatetheia@theiatheia@theiadocker-jonhylml:ct/CC201/labs/3_K8s
+ C201/labs/3_K8sScaleAn        theia@theiadocker-jonhylml:    abs/3_K8sScaleAndUpdatethei    theia@theiadocker-jonhylml:/   bs/3_K8sScaleAndUpdatetheia@thetheia@theiadocker-jonhylml:/homeCC201/labs/3_K8sScaleAndUpdate
+ScaleAndUpdatetheia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ docker build -t us.i
+cr.io/$MY_NAMESPACE/hello-world:2 . && docker push us.icr.io/$MY_NAMESPACE/hello-world:2
+Sending build context to Docker daemon  6.144kB
+Step 1/6 : FROM node:9.4.0-alpine
+ ---> b5f94997f35f
+Step 2/6 : COPY app.js .
+ ---> 4f6500d3afe7
+Step 3/6 : COPY package.json .
+ ---> 2ed668db92c5
+Step 4/6 : RUN npm install &&    apk update &&    apk upgrade
+ ---> Running in 443ef46006d8
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN hello-world-armada@0.0.1 No repository field.
+npm WARN hello-world-armada@0.0.1 No license field.
+
+added 57 packages in 2.092s
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/community/x86_64/APKINDEX.tar.gz
+v3.6.5-44-gda55e27396 [http://dl-cdn.alpinelinux.org/alpine/v3.6/main]
+v3.6.5-34-gf0ba0b43d5 [http://dl-cdn.alpinelinux.org/alpine/v3.6/community]
+OK: 8448 distinct packages available
+Upgrading critical system libraries and apk-tools:
+(1/1) Upgrading apk-tools (2.7.5-r0 -> 2.7.6-r0)
+Executing busybox-1.26.2-r9.trigger
+Continuing the upgrade transaction with new apk-tools:
+(1/7) Upgrading musl (1.1.16-r14 -> 1.1.16-r15)
+(2/7) Upgrading busybox (1.26.2-r9 -> 1.26.2-r11)
+Executing busybox-1.26.2-r11.post-upgrade
+(3/7) Upgrading libressl2.5-libcrypto (2.5.5-r0 -> 2.5.5-r2)
+(4/7) Upgrading libressl2.5-libssl (2.5.5-r0 -> 2.5.5-r2)
+(5/7) Installing libressl2.5-libtls (2.5.5-r2)
+(6/7) Installing ssl_client (1.26.2-r11)
+(7/7) Upgrading musl-utils (1.1.16-r14 -> 1.1.16-r15)
+Executing busybox-1.26.2-r11.trigger
+OK: 5 MiB in 15 packages
+Removing intermediate container 443ef46006d8
+ ---> 62c3ef660d26
+Step 5/6 : EXPOSE  8080
+ ---> Running in dc87cf8ec1fc
+Removing intermediate container dc87cf8ec1fc
+ ---> e8c5a40c9324
+Step 6/6 : CMD node app.js
+ ---> Running in 633fd717e3e0
+Removing intermediate container 633fd717e3e0
+ ---> 1b2676fd246f
+Successfully built 1b2676fd246f
+Successfully tagged us.icr.io/sn-labs-jonhylml/hello-world:2
+The push refers to repository [us.icr.io/sn-labs-jonhylml/hello-world]
+22f304e3be5e: Pushed           9.091MBe5d46: Layer already exi
+9d33ccbfe40b: Pushed 
+0804854a4553: Layer already exists a62f5178: Layer already exi
+9dfa40a0da3b: Layer already exi2: digest: sha256:a6bbfdfcdd1feb602793e9cc9f97a827c7b3d639c78293aee012fb509e72df5a size: 1576
+theia@theiadocker-jonhylml:/home
+ScaleAndUpdatetheia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ ibmcloud cr images
+Listing images...
+
+Repository                                      Tag      Digest         Namespace          Created          Size     Security status   
+us.icr.io/sn-labs-jonhylml/hello-world          1        1923f6556632   sn-labs-jonhylml   15 minutes ago   28 MB    No Issues   
+us.icr.io/sn-labs-jonhylml/hello-world          2        a6bbfdfcdd1f   sn-labs-jonhylml   37 seconds ago   28 MB    No Issues   
+us.icr.io/sn-labsassets/instructions-splitter   latest   2af122cfe4ee   sn-labsassets      1 year ago       21 MB    57 Issues   
+us.icr.io/sn-labsassets/pgadmin-theia           latest   0adf67ad81a3   sn-labsassets      1 year ago       101 MB   51 Issues   
+us.icr.io/sn-labsassets/phpmyadmin              latest   b66c30786353   sn-labsassets      1 year ago       163 MB   55 Issues   
+
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl set image deployment/hello-world hello-world=us.icr.io/$MY_NAMESPACE/hello-world:2
+deployment.apps/hello-world image updated
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl rollout status deployment/hello-world
+deployment "hello-world" successfully rolled out
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl get deployments -o wide
+NAME          READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS    IMAGES                                     SELECTOR
+hello-world   1/1     1            1           14m   hello-world   us.icr.io/sn-labs-jonhylml/hello-world:2   run=hello-world
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ curl -L localhost:8001/api/v1/namespaces/sn-labs-$USERNAME/services/hello-world/proxy
+Welcome to hello-world-6dbf444c58-5cj4f! Your app is up and running!
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl rollout undo deployment/hello-world
+deployment.apps/hello-world rolled back
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl rollout status deployment/hello-world
+deployment "hello-world" successfully rolled out
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl get deployments -o wide
+NAME          READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS    IMAGES                                     SELECTOR
+hello-world   1/1     1            1           16m   hello-world   us.icr.io/sn-labs-jonhylml/hello-world:1   run=hello-world
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ curl -L localhost:8001/api/v1/namespaces/sn-labs-$USERNAME/services/hello-world/proxy
+Hello world from hello-world-86869f9765-pn6f5! Your app is up and running!
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ 
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ 
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl create configmap app-config --from-literal=MESSAGE="This message came from a ConfigMap!"
+configmap/app-config created
+theia@theiadocker-jonhylml:/home/
+theia@theiadocker-jonhylml:/homenhylml:/home/project/CC201/lab
+theia@theiadocker-jonhylml:/home/
+theia@theiadocker-jonhylml:/homenhylml:/home/project/CC201/lab
+theia@theiadocker-jonhylml:/homejonhylml:/home/project/CC201/l
+theia@theiadocker-jonhylml:/homejonhylml:/home/project/CC201/l
+theia@theiadocker-jonhylml:/homejonhylml:/home/project/CC201/l
+theia@theiadocker-jonhylml:/homejonhylml:/home/project/CC201/l
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ docker build -t us.icr.io/$MY_NAMESPACE/hello-world:3 . && docker push us.icr.io/$MY_NAMESPACE/hello-world:3
+Sending build context to Docker daemon  6.144kB
+Step 1/6 : FROM node:9.4.0-alpine
+ ---> b5f94997f35f
+Step 2/6 : COPY app.js .
+ ---> 8801281fdd17
+Step 3/6 : COPY package.json .
+ ---> eaf6bde9f2cc
+Step 4/6 : RUN npm install &&    apk update &&    apk upgrade
+ ---> Running in ecdfc8cfbec9
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN hello-world-armada@0.0.1 No repository field.
+npm WARN hello-world-armada@0.0.1 No license field.
+
+added 57 packages in 2.179s
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/community/x86_64/APKINDEX.tar.gz
+v3.6.5-44-gda55e27396 [http://dl-cdn.alpinelinux.org/alpine/v3.6/main]
+v3.6.5-34-gf0ba0b43d5 [http://dl-cdn.alpinelinux.org/alpine/v3.6/community]
+OK: 8448 distinct packages available
+Upgrading critical system libraries and apk-tools:
+(1/1) Upgrading apk-tools (2.7.5-r0 -> 2.7.6-r0)
+Executing busybox-1.26.2-r9.trigger
+Continuing the upgrade transaction with new apk-tools:
+(1/7) Upgrading musl (1.1.16-r14 -> 1.1.16-r15)
+(2/7) Upgrading busybox (1.26.2-r9 -> 1.26.2-r11)
+Executing busybox-1.26.2-r11.post-upgrade
+(3/7) Upgrading libressl2.5-libcrypto (2.5.5-r0 -> 2.5.5-r2)
+(4/7) Upgrading libressl2.5-libssl (2.5.5-r0 -> 2.5.5-r2)
+(5/7) Installing libressl2.5-libtls (2.5.5-r2)
+(6/7) Installing ssl_client (1.26.2-r11)
+(7/7) Upgrading musl-utils (1.1.16-r14 -> 1.1.16-r15)
+Executing busybox-1.26.2-r11.trigger
+OK: 5 MiB in 15 packages
+Removing intermediate container ecdfc8cfbec9
+ ---> 53557141e81e
+Step 5/6 : EXPOSE  8080
+ ---> Running in cda8289de8aa
+Removing intermediate container cda8289de8aa
+ ---> 18bb45e51e6a
+Step 6/6 : CMD node app.js
+ ---> Running in e1f655a3fcf0
+Removing intermediate container e1f655a3fcf0
+ ---> 815439598b2f
+Successfully built 815439598b2f
+Successfully tagged us.icr.io/sn-labs-jonhylml/hello-world:3
+The push refers to repository [us.icr.io/sn-labs-jonhylml/hello-world]
+5b2506a7a9b0: Pushed 
+560c662e5d46: Layer already exists 
+3d4b5a101ec0: Pushed 
+0804854a4553: Layer already exists 
+6bd4a62f5178: Layer already exists 
+9dfa40a0da3b: Layer already exists 
+3: digest: sha256:260406b7473bf63813f1812bfa394381a55014e3ec7732872bef56327aab426a size: 1576
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl apply -f deployment-configmap-env-var.yaml
+deployment.apps/hello-world configured
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ curl -L localhost:8001/api/v1/namespaces/sn-labs-$USERNAME/services/hello-world/proxy
+This message came from a ConfigMap!
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl delete configmap app-config && kubectl create configmap app-config --from-literal=MESSAGE="This message is different, and you didn't have to rebuild the image!"
+configmap "app-config" deleted
+configmap/app-config created
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl rollout restart deployment hello-world
+deployment.apps/hello-world restarted
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ curl -L localhost:8001/api/v1/namespaces/sn-labs-$USERNAME/services/hello-world/proxy
+This message is different, and you didn't have to rebuild the image!
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl delete -f deployment-configmap-env-var.yaml
+deployment.apps "hello-world" deleted
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ kubectl delete service hello-world
+service "hello-world" deleted
+theia@theiadocker-jonhylml:/home/project/CC201/labs/3_K8sScaleAndUpdate$ 
